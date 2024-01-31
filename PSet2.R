@@ -40,19 +40,23 @@ count(gspace)
 
 # 4 ----
 
-gs2021 = gspace[c(23:27)]
-s2021 = summarize(gs2021,
-                  annual_avg = mean(annual_avg_2021, na.rm = T),
-                  peak_NDVI = mean(peak_NDVI_2021, na.rm = T),
-                  annual_weight_avg = mean(annual_weight_avg_2021, na.rm = T),
-                  peak_weight = mean(peak_weight_2021, na.rm = T))
+gs2021 = summarize(gspace,
+                  mean = mean(annual_avg_2021, na.rm = T),
+                  median = median(annual_avg_2021, na.rm = T),
+                  minimum = min(annual_avg_2021, na.rm = T),
+                  maximum = max(annual_avg_2021, na.rm = T))
+knitr::kable(gs2021)
 
+  # In 2021, both the mean and median of the annual average NDVI is 0.28, which is considered very low.
+  # The annual average NDVI spans from a minimum of 0.04 (extremely low) to a maximum of 0.63 (very high).
 
 
 # 5 ----
 
 ## a ----
-high2015 = filter(gspace, indicator_2015 == 'High')
+high2015 = filter(gspace, indicator_2015 == 'High' | 
+                    indicator_2015 == 'Very High' | 
+                    indicator_2015 == 'Exceptionally High')
 count(high2015)
 
   # 62 urban areas scored `High` or above for greenspace in 2015.

@@ -41,7 +41,8 @@ table =
   )
 
 # output as table
-knitr::kable(table, digits = 1) # added library knitr to access kable function and changed object from "gspace" to "table"
+knitr::kable(table, digits = 1) # added library knitr to access kable function 
+                                # changed object from "gspace" to "table"
 
 ```
 
@@ -53,19 +54,27 @@ count(gspace)
 
 ```
 
-4.
+4. In 2021, both the mean and median of the annual average NDVI is 0.28, which is considered very low. The annual average NDVI spans from a minimum of 0.04 (extremely low) to a maximum of 0.63 (very high).
+
 
 ```{r}
 
-# code
+gs2021 = summarize(gspace,
+                  mean = mean(annual_avg_2021, na.rm = T),
+                  median = median(annual_avg_2021, na.rm = T),
+                  minimum = min(annual_avg_2021, na.rm = T),
+                  maximum = max(annual_avg_2021, na.rm = T))
+knitr::kable(gs2021)
 
 ```
 
-5. a. 62 urban areas scored `High` or above for greenspace in 2015.
+5. a. 66 urban areas scored `High` or above for greenspace in 2015.
 
 ```{r}
 
-high2015 = filter(gspace, indicator_2015 == 'High')
+high2015 = filter(gspace, indicator_2015 == 'High' | 
+                    indicator_2015 == 'Very High' | 
+                    indicator_2015 == 'Exceptionally High')
 count(high2015)
 
 ```
@@ -94,7 +103,7 @@ count(less_arid)
 
 ```
 
-6. 128 urban areas became less green from 2010 to 2021. These observations were not concentrated in a particular geographic or climate region. The top geographic and climate regions only exceeded the second most common geographic and climate regions by about 10 urban areas. Europe had the most urban areas fitting this criteria at 47, followed by Asia at 35 and Africa at 25. The country with the most urban areas fitting this criteria was Russia at 13 followed by the United States and India, both at 8. Temperate climates were the most popular among these areas at 45, followed by continental climates at 36.
+6. 128 urban areas became less green from 2010 to 2021. These observations were not concentrated in a particular geographic or climate region. The top geographic and climate regions only exceeded the second most common geographic and climate regions by about 10 urban areas. Europe had the most urban areas fitting this criteria at 47, followed by Asia at 35 and Africa at 25. The country with the most urban areas fitting this criteria was Russia at 13 followed by the United States and India, both at 8. Temperate climates were the most popular among these areas at 45, followed by continental climates at 36 and tropical climates at 34.
 
 ```{r}
 less_green = filter(gspace, annual_avg_2010 > annual_avg_2021)
