@@ -59,7 +59,7 @@ high2015 = filter(gspace, indicator_2015 == 'High' |
                     indicator_2015 == 'Exceptionally High')
 count(high2015)
 
-  # 62 urban areas scored `High` or above for greenspace in 2015.
+  # 66 urban areas scored `High` or above for greenspace in 2015.
 
 ## b ----
 exlow = filter(gspace,

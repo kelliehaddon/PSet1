@@ -41,8 +41,8 @@ table =
   )
 
 # output as table
-knitr::kable(table, digits = 1) # added library knitr to access kable function 
-                                # changed object from "gspace" to "table"
+                                # added library knitr to access kable function 
+knitr::kable(table, digits = 1) # changed object from "gspace" to "table"
 
 ```
 
